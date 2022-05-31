@@ -21,23 +21,21 @@ for e in codPar:
 
 
 print("Consulta 2")
-provAu = session.query(Establecimiento.nombreInstitucion).join(Parroquia, Canton, Provincia).filter(Provincia.nombre == 'EL ORO').all()
+provAu = session.query(Establecimiento.nombreInstitucion).join(Parroquia, Canton, Provincia).filter(Provincia.nombre.like('EL ORO')).all()
 
 for o in provAu:
 	print("%s " % (o))
 
 
 print("Consulta 3")
-canPor = session.query(Establecimiento).join(Canton).\
-        filter(Canton.nombre == "PORTOVELO").all()
+canPor = session.query(Establecimiento).join(Parroquia, Canton, Provincia).filter(Canton.nombre.like("PORTOVELO")).all()
 
 for p in canPor:
-	print(p)
-
-canZam = session.query(Establecimiento).join(Canton).\
-        filter(Canton.nombre == "ZAMORA").all()
+	print("%s " % (p))
 
 print("Consulta 4")
 
+canZam = session.query(Establecimiento).join(Parroquia, Canton, Provincia).filter(Canton.nombre.like("ZAMORA")).all()
+
 for z in canZam:
-	print(z)
+	print("%s " % (z))
