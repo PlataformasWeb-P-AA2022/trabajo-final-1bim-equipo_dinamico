@@ -13,7 +13,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 print("Consulta 1")
-codPar = session.query(Establecimiento, Parroquia).join(Parroquia).filter(Parroquia.codigo == "110553").all()
+codPar = session.query(Establecimiento.nombreInstitucion).join(Parroquia).filter(Parroquia.codigo == "110553").all()
 
 for e in codPar:
 	print("%s " % (e))
@@ -28,14 +28,14 @@ for o in provAu:
 
 
 print("Consulta 3")
-canPor = session.query(Establecimiento).join(Parroquia, Canton, Provincia).filter(Canton.nombre.like("PORTOVELO")).all()
+canPor = session.query(Establecimiento.nombreInstitucion).join(Parroquia, Canton, Provincia).filter(Canton.nombre.like("PORTOVELO")).all()
 
 for p in canPor:
 	print("%s " % (p))
 
 print("Consulta 4")
 
-canZam = session.query(Establecimiento).join(Parroquia, Canton, Provincia).filter(Canton.nombre.like("ZAMORA")).all()
+canZam = session.query(Establecimiento.nombreInstitucion).join(Parroquia, Canton, Provincia).filter(Canton.nombre.like("ZAMORA")).all()
 
 for z in canZam:
 	print("%s " % (z))
