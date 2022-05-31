@@ -17,7 +17,7 @@ codPar = session.query(Establecimiento, Parroquia).join(Parroquia).\
 
 print("Consulta 1")
 
-for e in codPar
+for e in codPar:
 	print(e)
 
 provAu = session.query(Establecimiento, Provincia).join(Provincia).\
@@ -25,7 +25,7 @@ provAu = session.query(Establecimiento, Provincia).join(Provincia).\
 
 print("Consulta 2")
 
-for o in provAu
+for o in provAu:
 	print(o)
 
 canPor = session.query(Establecimiento, Canton).join(Canton).\
@@ -33,7 +33,7 @@ canPor = session.query(Establecimiento, Canton).join(Canton).\
 
 print("Consulta 3")
 
-for p in canPor
+for p in canPor:
 	print(p)
 
 canZam = session.query(Establecimiento, Canton).join(Canton).\
@@ -41,5 +41,5 @@ canZam = session.query(Establecimiento, Canton).join(Canton).\
 
 print("Consulta 4")
 
-for z in canZam
+for z in canZam:
 	print(z)
