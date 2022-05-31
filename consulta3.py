@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import and_, or_ # se importa el operador and
+from sqlalchemy import and_, or_  # se importa el operador and
 
 from crear_tabla import *
 
@@ -12,18 +12,20 @@ engine = create_engine(cadena_base_datos)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-canNum =  session.query(Canton.nombre).join(Establecimiento).\
-        filter(or_(Establecimiento.numDocentes == 0, Establecimiento.numDocentes == 5, Establecimiento.numDocentes == 11)).all()
-
 print("Consulta 1")
 
-for j in canNum:
-	print(j)
+canNum = session.query(Canton.nombre).join(Parroquia, Establecimiento).\
+    filter(or_(Establecimiento.numDocentes == 0, Establecimiento.numDocentes ==
+           5, Establecimiento.numDocentes == 11)).all()
 
-esJor = session.query(Establecimiento.nombre).join(Parroquia).\
-        filter(and_(Establecimiento.numEstudiantes >= 21, Parroquia.nombre == "PINDAL")).all()
+for e in canNum:
+    print("%s " % (e))
 
 print("Consulta 2")
 
+esJor = session.query(Establecimiento.nombreInstitucion).join(Parroquia).\
+    filter(and_(Establecimiento.numEstudiantes >=
+           21, Parroquia.nombre == "PINDAL")).all()
+
 for e in esJor:
-	print(e)
+    print("%s " % (e))
