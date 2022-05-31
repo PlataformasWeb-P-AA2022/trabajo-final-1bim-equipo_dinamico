@@ -12,32 +12,30 @@ engine = create_engine(cadena_base_datos)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-codPar = session.query(Establecimiento, Parroquia).join(Parroquia).\
-        filter(Parroquia.codigo == "110553").all()
-
 print("Consulta 1")
+codPar = session.query(Establecimiento, Parroquia).join(Parroquia).filter(Parroquia.codigo == "110553").all()
 
 for e in codPar:
-	print(e)
+	print("%s " % (e))
+        
 
-provAu = session.query(Establecimiento, Provincia).join(Provincia).\
-        filter(Provincia.nombre == "Oro").all()
 
 print("Consulta 2")
+provAu = session.query(Establecimiento.nombreInstitucion).join(Parroquia, Canton, Provincia).filter(Provincia.nombre == 'EL ORO').all()
 
 for o in provAu:
-	print(o)
+	print("%s " % (o))
 
-canPor = session.query(Establecimiento, Canton).join(Canton).\
-        filter(Canton.nombre == "Portovelo").all()
 
 print("Consulta 3")
+canPor = session.query(Establecimiento).join(Canton).\
+        filter(Canton.nombre == "PORTOVELO").all()
 
 for p in canPor:
 	print(p)
 
-canZam = session.query(Establecimiento, Canton).join(Canton).\
-        filter(Canton.nombre == "Zamora").all()
+canZam = session.query(Establecimiento).join(Canton).\
+        filter(Canton.nombre == "ZAMORA").all()
 
 print("Consulta 4")
 

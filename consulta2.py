@@ -12,7 +12,7 @@ engine = create_engine(cadena_base_datos)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-esJor = session.query(Parroquia, Establecimiento).join(Establecimiento).\
+esJor = session.query(Parroquia.nombre).join(Establecimiento).\
         filter(and_(Establecimiento.modalidad == "Matutina y Vespertina")).all()
 
 print("Consulta 1")
@@ -20,8 +20,8 @@ print("Consulta 1")
 for e in esJor:
 	print(e)
 
-esNum =  session.query(Canton, Establecimiento).join(Establecimiento).\
-        filter(or_(Establecimiento.numEstudiantes == "448", Establecimiento.numEstudiantes == "450", Establecimiento.numEstudiantes == "451", Establecimiento.numEstudiantes == "454", Establecimiento.numEstudiantes == "458", Establecimiento.numEstudiantes == "459")).all()
+esNum = session.query(Canton.nombre).join(Establecimiento).\
+	filter(or_(Establecimiento.numEstudiantes == 448, Establecimiento.numEstudiantes == 450, Establecimiento.numEstudiantes == 451, Establecimiento.numEstudiantes == 454, Establecimiento.numEstudiantes == 458, Establecimiento.numEstudiantes == 459)).all()
 
 print("Consulta 2")
 
