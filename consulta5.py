@@ -15,7 +15,7 @@ session = Session()
 print("Consulta 1")
 
 esCod = session.query(Establecimiento.nombreInstitucion).\
-    filter(and_(Establecimiento.numDocentes > 100)).order_by(
+    filter(Establecimiento.numDocentes > 100).order_by(
         Establecimiento.numEstudiantes).all()
 
 for c in esCod:
@@ -24,7 +24,7 @@ for c in esCod:
 print("Consulta 2")
 
 esCod = session.query(Establecimiento.nombreInstitucion).\
-    filter(and_(Establecimiento.numDocentes > 100)).order_by(
+    filter(Establecimiento.numDocentes > 100).order_by(
         Establecimiento.numDocentes).all()
 
 for c in esCod:
